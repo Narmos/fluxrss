@@ -1,2 +1,2 @@
 # fluxrss
-Agrégateur de flux RSS
+Agrégateur de flux RSS en cours de développement...

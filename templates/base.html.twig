@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Flux RSS{% endblock %}</title>
+        <link rel="icon" type="image/png" href="{{ asset('images/rss.svg') }}" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-4.5.2-united.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/fontawesome-5.14.0.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Retour en haut de la page" data-toggle="tooltip" data-placement="left"><i class="fas fa-chevron-up"></i></a>
+        <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+        <script src="{{ asset('js/popper-1.16.0.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap-4.5.2.min.js') }}"></script>
+        <script src="{{ asset('js/scripts.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

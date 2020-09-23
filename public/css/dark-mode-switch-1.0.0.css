@@ -1,0 +1,91 @@
+/* Configuration par défaut */
+
+[data-theme="dark"] {
+  background-color: #1a222b !important;
+  color: #eee;
+}
+
+[data-theme="dark"] .bg-light {
+  background-color: #333 !important;
+}
+
+[data-theme="dark"] .bg-white {
+  background-color: #000 !important;
+}
+
+[data-theme="dark"] .bg-black {
+  background-color: #eee !important;
+}
+
+/* Spécifique à rss.narmos.ch */
+
+[data-theme="dark"] p,
+[data-theme="dark"] .custom-control-label,
+[data-theme="dark"] .dropdown-item a {
+  color: #eee !important;
+}
+
+[data-theme="dark"] .text-primary,
+[data-theme="dark"] #navbarDropdownMenuLink {
+  color: #6200ff !important;
+}
+
+[data-theme="dark"] .input-group-text {
+  background-color: #373e46 !important;
+}
+
+[data-theme="dark"] #add_url {
+  background-color: #1a222b !important;
+}
+
+[data-theme="dark"] .input-group-text,
+[data-theme="dark"] #add_url {
+  border-color: #373e46 !important;
+  color: #eee !important;
+}
+
+[data-theme="dark"] .dropdown-menu {
+  background-color: #1a222b !important;
+  border: 1px solid rgba(255,255,255,0.125) !important;
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .dropdown-item:focus {
+  background-color: #373e46 !important;
+  color: #eee !important;
+}
+
+[data-theme="dark"] .list-group-item {
+  background-color: #1a222b !important;
+  border: 1px solid rgba(255,255,255,0.125) !important;
+}
+
+[data-theme="dark"] .list-group-item + .list-group-item {
+	border-top-width: 0 !important;
+}
+
+[data-theme="dark"] .list-group-item-action:hover,
+[data-theme="dark"] .list-group-item-action:focus {
+  background-color: #192029 !important;
+}
+
+[data-theme="dark"] .source-item {
+  border: none !important;
+  border-bottom: 1px solid #333 !important;
+}
+
+[data-theme="dark"] .text-primary-gradient {
+  background: -webkit-linear-gradient(left, #6200ff 60%, #e95420) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+[data-theme="dark"] .btn-primary {
+  background-color: #6200ff !important;
+  border-color: #6200ff !important;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-color: #5100d4 !important;
+  border-color: #510bc0 !important;
+}

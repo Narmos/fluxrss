@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/dark-mode-switch-1.0.0.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt-5 mb-5">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 d-flex justify-content-between align-items-center">
+                <form method="POST" action="{{ path('home') }}" class="form-inline">  
+                    <label class="sr-only" for="url">URL</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-rss"></i></div>
+                        </div>
+                        <input type="url" class="form-control" id="add_url" name="add_url" placeholder="http(s)://...">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Ajouter</button>
+                </form>
+                <span class="dropdown">
+                    <a class="nav-link dropdown-toggle navbar-text" href="#" title="Actions" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-cog fa-lg"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownMenuLink">
+                        <div class="dropdown-item">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+                                <label class="custom-control-label" for="darkSwitch">Mode sombre</label>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="{{ path('import') }}"><i class="fas fa-arrow-alt-circle-left"></i> Import</a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="{{ path('export') }}"><i class="fas fa-arrow-alt-circle-right"></i> Export</a>
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-1"></div>
+            <div class="col-2"></div>
+            <div class="col-6">
+                <h1>EXPORT</h1>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/dark-mode-switch-1.0.0.min.js') }}"></script>
+{% endblock %}

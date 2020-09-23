@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/dark-mode-switch-1.0.0.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt-5 mb-5">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 d-flex justify-content-between align-items-center">
+                <form method="POST" action="{{ path('home') }}" class="form-inline">  
+                    <label class="sr-only" for="url">URL</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-rss"></i></div>
+                        </div>
+                        <input type="url" class="form-control" id="add_url" name="add_url" placeholder="http(s)://...">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Ajouter</button>
+                </form>
+                <span class="dropdown">
+                    <a class="nav-link dropdown-toggle navbar-text" href="#" title="Actions" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-cog fa-lg"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownMenuLink">
+                        <div class="dropdown-item">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+                                <label class="custom-control-label" for="darkSwitch">Mode sombre</label>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="{{ path('import') }}"><i class="fas fa-arrow-alt-circle-left"></i> Import</a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="{{ path('export') }}"><i class="fas fa-arrow-alt-circle-right"></i> Export</a>
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+        {% if fluxUrls %}
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <form method="POST" action="{{ path('home') }}" class="form-inline">  
+                        <select class="custom-select" id="selection" name="selection" onchange="this.form.submit()">
+                            <option value="all" {% if fluxUrlsToShow|length > 1 %}selected{% endif %}>Tous les flux</option>
+                            {% for url, flux in fluxContent %}
+                                {% for channel in flux %}
+                                    <option value="{{ url }}" {% if fluxUrlsToShow|length == 1 and fluxUrlsToShow|first == url %}selected{% endif %}>{{ channel.title }}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        {% endif %}
+
+        <div class="row mt-3">
+            <div class="col-1"></div>
+            <div class="col-2">
+                <ul class="list-group">
+                    {% for url, flux in fluxContent %}
+                        {% for channel in flux %}
+                            <form method="POST" action="{{ path('home') }}">
+                                <li class="list-group-item d-flex align-items-center source-item">
+                                    <input type="hidden" id="del_url" name="del_url" value="{{ url }}">
+                                    <button type="submit" class="btn text-primary"><i class="fas fa-trash-alt"></i></button>
+                                    {{ channel.title }}
+                                </li>
+                            </form>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-6">
+                {% if newFluxError %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Erreur !</strong> L'adresse du flux RSS n'est pas valide.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+                <div class="list-group">
+                    {% for url, flux in fluxContentToShow %}
+                        {% for channel in flux %}
+                            {% for content in channel.item %}
+                                <a href="{{ content.link }}" target="_blank" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 text-primary-gradient">{{ content.title }}</h5>
+                                        <small class="text-muted">{{ content.pubDate|date("d/m/Y h:i") }}</small>
+                                    </div>
+                                    <p class="mb-1">{{ content.description }}</p>
+                                    <small class="font-italic text-muted">{{ channel.title }}</small>
+                                </a>
+                            {% endfor %}
+                        {% endfor %}
+                    {% else %}
+                        <p class="">Oups ! Je n'ai pas encore flux RSS à afficher...</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/dark-mode-switch-1.0.0.min.js') }}"></script>
+{% endblock %}
